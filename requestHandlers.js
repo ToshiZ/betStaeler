@@ -40,7 +40,7 @@ function upload(response, postData) {
     		if (err) throw err;
   			console.log('It\'s saved!');
     	});
-	  	response.write(jsonFile);
+	  	response.write(JSON.stringify(jsonFile));
 	  	response.end();
 	}
   });
