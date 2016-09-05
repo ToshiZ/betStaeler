@@ -24,10 +24,10 @@ function start(response, postData) {
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "jsonp"});
+  response.writeHead(200, {"Content-Type": "text/plain"});
   fs.readFile("./tmp/test.txt", (error, file) => {
   	if(error) {
-		response.writeHead(500, {"Content-Type": "jsonp"});
+		response.writeHead(500, {"Content-Type": "text/plain"});
 		response.write(error + "\n");
 		response.end();
     } else {
