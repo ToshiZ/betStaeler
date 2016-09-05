@@ -1,0 +1,15 @@
+{
+    "name": "betStealer",
+    "preferGlobal": true,
+    "version": "0.0.1",
+    "author": "ToshiZ",
+    "description": "steal marathon bets",
+    "license": "MIT",
+    "engines": {
+        "node": ">=6.3.1"
+    },
+    "scripts": {
+        "start": "node ./index.js"
+    },
+    "dependencies": {}
+}
