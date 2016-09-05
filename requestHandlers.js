@@ -25,7 +25,7 @@ function start(response, postData) {
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
-  fs.readFile("tmp/test.txt", (error, file) => {
+  fs.readFile("./tmp/test.txt", (error, file) => {
   	if(error) {
 		response.writeHead(500, {"Content-Type": "text/plain"});
 		response.write(error + "\n");
@@ -34,7 +34,7 @@ function upload(response, postData) {
     	let jsonFile = JSON.parse(file);
     	if(typeof jsonFile['newData'] != 'object') jsonFile['newData'] = [];
     	jsonFile['newData'].push(querystring.parse(postData).text);
-    	fs.writeFile('tmp/test.txt', JSON.stringify(jsonFile), (err) => {
+    	fs.writeFile('./tmp/test.txt', JSON.stringify(jsonFile), (err) => {
     		if (err) throw err;
   			console.log('It\'s saved!');
     	});
@@ -46,7 +46,7 @@ function upload(response, postData) {
 
 function show(response, postData) {
   console.log("Request handler 'show' was called.");
-  fs.readFile("tmp/test.txt", (error, file) => {
+  fs.readFile("./tmp/test.txt", (error, file) => {
     if(error) {
       response.writeHead(500, {"Content-Type": "text/plain"});
       response.write(error + "\n");
