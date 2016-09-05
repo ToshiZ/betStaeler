@@ -33,7 +33,8 @@ function upload(response, postData) {
     } else {
     	let jsonFile = JSON.parse(file);
     	if(typeof jsonFile['newData'] != 'object') jsonFile['newData'] = [];
-    	jsonFile['newData'].push(querystring.parse(postData).text);
+    	//jsonFile['newData'].push(querystring.parse(postData).text);
+    	jsonFile['newData'].push(JSON.parse(postData));
     	fs.writeFile('./tmp/test.txt', JSON.stringify(jsonFile), (err) => {
     		if (err) throw err;
   			console.log('It\'s saved!');
