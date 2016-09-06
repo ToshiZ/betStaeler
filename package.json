@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ToshiZ/betStaeler/issues"
   },
-  "homepage": "https://github.com/ToshiZ/betStaeler#readme"
+  "homepage": "https://github.com/ToshiZ/betStaeler#readme",
+   "dependencies": {
+    "mongoose": ">=4.1.11"
+  }
 }

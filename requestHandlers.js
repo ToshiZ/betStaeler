@@ -1,6 +1,6 @@
 var querystring = require("querystring"),
 	fs = require("fs"),
-	http = require("http");
+	db = require("./db");
 
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
@@ -23,7 +23,7 @@ function start(response, postData) {
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
-  fs.readFile("./tmp/test.txt", (error, file) => {
+/*  fs.readFile("./tmp/test.txt", (error, file) => {
   	if(error) {
 		response.writeHead(500, {"Content-Type": "text/plain"});
 		response.write(error + "\n");
@@ -42,13 +42,30 @@ function upload(response, postData) {
 	  	response.write(JSON.stringify(jsonFile));
 	  	response.end();
 	}
-  });
+  });*/
+  	let newData = new Bets ({data: postData});
+  	newData.save((error) => {
+  		if (error) {
+  			console.log ('Error on save!')
+  		} else {
+  			Bets.find({}).exec((error, result) => {
+				if(error){
+					response.writeHead(500, {"Content-Type": "text/plain"});
+					response.write(error + "\n");
+					response.end();
+				} else {
+					response.write(JSON.stringify(result));
+	  				response.end();
+				}	
+			});
+  		}
+  	});	
 }
 
 function upload2(response, postData) {
   console.log("Request handler 'upload2' was called.");
   response.writeHead(200, {"Content-Type": "text/plain"});
-  fs.readFile("./tmp/test.txt", (error, file) => {
+  /*fs.readFile("./tmp/test.txt", (error, file) => {
   	if(error) {
 		response.writeHead(500, {"Content-Type": "text/plain"});
 		response.write(error + "\n");
@@ -67,12 +84,29 @@ function upload2(response, postData) {
 	  	response.write(JSON.stringify(jsonFile));
 	  	response.end();
 	}
-  });
+  });*/
+  let newData = new LPs ({lp: postData});
+  	newData.save((error) => {
+  		if (error) {
+  			console.log ('Error on save!')
+  		} else {
+  			LPs.find({}).exec((error, result) => {
+				if(error){
+					response.writeHead(500, {"Content-Type": "text/plain"});
+					response.write(error + "\n");
+					response.end();
+				} else {
+					response.write(JSON.stringify(result));
+	  				response.end();
+				}	
+			});
+  		}
+  	});	
 }
 
 function show(response, postData) {
   console.log("Request handler 'show' was called.");
-  fs.readFile("./tmp/test.txt", (error, file) => {
+/*  fs.readFile("./tmp/test.txt", (error, file) => {
     if(error) {
 		response.writeHead(500, {"Content-Type": "text/plain"});
 		response.write(error + "\n");
@@ -95,7 +129,40 @@ function show(response, postData) {
 		response.write(body);
 		response.end();
     }
-  });
+  });*/
+	LPs.find({}).exec((error, result) => {
+		if(error){
+			response.writeHead(500, {"Content-Type": "text/plain"});
+			response.write(error + "\n");
+			response.end();
+		} else {
+			Bets.find({}).exec((error, result2) => {
+				if(error){
+					response.writeHead(500, {"Content-Type": "text/plain"});
+					response.write(error + "\n");
+					response.end();
+				} else {
+					let body = '<html>'+
+					    '<head>'+
+					    '<meta http-equiv="Content-Type" content="text/html; '+
+					    'charset=UTF-8" />'+
+					    '</head>'+
+					    '<body>'+
+					    '<h1>' +
+					    JSON.stringify(result) +
+					    '</h1>' +
+					    '<h2>' + 
+					    JSON.stringify(result2) +
+					    '</h2>' +
+					    '</body>'+
+					    '</html>';
+					response.write(JSON.stringify(result) + JSON.stringify(result2));
+	  				response.end();
+				}	
+			});			
+		}	
+	});
+
 }
 
 
