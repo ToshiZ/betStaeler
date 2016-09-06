@@ -78,10 +78,10 @@ function show(response, postData) {
 		response.write(error + "\n");
 		response.end();
     } else {
-    	let fileStream = fs.createWriteStream("./tmp/test.txt");
-		let request = http.get("http://tmp/test.txt", function(response) {
-			response.pipe(fileStream);
-		});
+  //   	let fileStream = fs.createWriteStream("./tmp/test.txt");
+		// let request = http.get("http://tmp/test.txt", function(response) {
+		// 	response.pipe(fileStream);
+		// });
 	    let body = '<html>'+
 		    '<head>'+
 		    '<meta http-equiv="Content-Type" content="text/html; '+
