@@ -22,7 +22,7 @@ function start(response, postData) {
 
 function upload(response, postData) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/plain"});
+  //response.writeHead(200, {"Content-Type": "text/plain"});
   fs.readFile("./tmp/test.txt", (error, file) => {
   	if(error) {
 		response.writeHead(500, {"Content-Type": "text/plain"});
@@ -39,6 +39,7 @@ function upload(response, postData) {
     		if (err) throw err;
   			console.log('It\'s saved!');
     	});
+    	response.writeHead(200, {"Content-Type": "text/html"});
 	  	response.write(JSON.stringify(jsonFile));
 	  	response.end();
 	}
