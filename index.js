@@ -6,6 +6,7 @@ var handle = {}
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/upload2"] = requestHandlers.upload2;
 handle["/show"] = requestHandlers.show;
 
 server.start(router.route, handle);
