@@ -4,13 +4,13 @@ var querystring = require("querystring"),
 function start(response, postData) {
   console.log("Request handler 'start' was called.");
 
-  var body = '<html>'+
+  let body = '<html>'+
     '<head>'+
     '<meta http-equiv="Content-Type" content="text/html; '+
     'charset=UTF-8" />'+
     '</head>'+
     '<body>'+
-    '<h1>wat?&</h1>'+
+    '<h1>wat??</h1>'+
     '</body>'+
     '</html>';
 
@@ -73,13 +73,26 @@ function show(response, postData) {
   console.log("Request handler 'show' was called.");
   fs.readFile("./tmp/test.txt", (error, file) => {
     if(error) {
-      response.writeHead(500, {"Content-Type": "text/plain"});
-      response.write(error + "\n");
-      response.end();
+		response.writeHead(500, {"Content-Type": "text/plain"});
+		response.write(error + "\n");
+		response.end();
     } else {
-      response.writeHead(200, {"Content-Type": "text/plain"});
-      response.write(file, "text");
-      response.end();
+    	let fileStream = fs.createWriteStream("./tmp/test.txt");
+		let request = http.get("http://tmp/test.txt", function(response) {
+			response.pipe(fileStream);
+		});
+	    let body = '<html>'+
+		    '<head>'+
+		    '<meta http-equiv="Content-Type" content="text/html; '+
+		    'charset=UTF-8" />'+
+		    '</head>'+
+		    '<body>'+
+		    file +
+		    '</body>'+
+		    '</html>';
+		response.writeHead(200, {"Content-Type": "text/plain"});
+		response.write(body);
+		response.end();
     }
   });
 }
