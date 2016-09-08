@@ -43,12 +43,12 @@ function upload(response, postData) {
 	  	response.end();
 	}
   });*/
-  	let newData = new Bets ({data: postData});
+  	let newData = new db.Bets ({data: postData});
   	newData.save((error) => {
   		if (error) {
   			console.log ('Error on save!')
   		} else {
-  			Bets.find({}).exec((error, result) => {
+  			db.Bets.find({}).exec((error, result) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
 					response.write(error + "\n");
@@ -85,12 +85,12 @@ function upload2(response, postData) {
 	  	response.end();
 	}
   });*/
-  let newData = new LPs ({lp: postData});
+  let newData = new db.LPs ({lp: postData});
   	newData.save((error) => {
   		if (error) {
   			console.log ('Error on save!')
   		} else {
-  			LPs.find({}).exec((error, result) => {
+  			db.LPs.find({}).exec((error, result) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
 					response.write(error + "\n");
@@ -130,13 +130,13 @@ function show(response, postData) {
 		response.end();
     }
   });*/
-	LPs.find({}).exec((error, result) => {
+	db.LPs.find({}).exec((error, result) => {
 		if(error){
 			response.writeHead(500, {"Content-Type": "text/plain"});
 			response.write(error + "\n");
 			response.end();
 		} else {
-			Bets.find({}).exec((error, result2) => {
+			db.Bets.find({}).exec((error, result2) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
 					response.write(error + "\n");
