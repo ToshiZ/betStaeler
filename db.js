@@ -1,7 +1,7 @@
 var mongoose = require ("mongoose");
 //console.log('1111111111111111111');
 //console.log(MONGODB_URI);
-var uristring = process.env.MONGODB_URI || 'mongodb://localhost/HelloMongoose';
+var uristring = process.env.MONGODB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/HelloMongoose';
 
 mongoose.connect(uristring, function (err, res) {
 	if (err) { 
