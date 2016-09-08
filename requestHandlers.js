@@ -138,14 +138,15 @@ function show(response, postData) {
 			response.write(error + "\n");
 			response.end();
 		} else {
-			console.log(`res1: ${result}`)
+			//console.log(`res1: ${result}`)
 			db.Bets.find({}).exec((error, result2) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
 					response.write(error + "\n");
 					response.end();
 				} else {
-					console.log(`res2: ${result2}`)
+					//console.log(`res2: ${result2}`)
+
 					let body = '<html>'+
 					    '<head>'+
 					    '<meta http-equiv="Content-Type" content="text/html; '+
@@ -153,10 +154,10 @@ function show(response, postData) {
 					    '</head>'+
 					    '<body>'+
 					    '<h1>' +
-					    JSON.stringify(result) +
+					    JSON.stringify(result).replace('\\', '') +
 					    '</h1>' +
 					    '<h2>' + 
-					    JSON.stringify(result2) +
+					    JSON.stringify(result2).replace('\\', '') +
 					    '</h2>' +
 					    '</body>'+
 					    '</html>';
