@@ -48,6 +48,7 @@ function upload(response, postData) {
   		if (error) {
   			console.log ('Error on save!')
   		} else {
+  			console.log ('bet saved');
   			db.Bets.find({}).exec((error, result) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
@@ -90,6 +91,7 @@ function upload2(response, postData) {
   		if (error) {
   			console.log ('Error on save!')
   		} else {
+  			console.log ('lps saved');
   			db.LPs.find({}).exec((error, result) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
@@ -136,12 +138,14 @@ function show(response, postData) {
 			response.write(error + "\n");
 			response.end();
 		} else {
+			console.log(`res1: ${result}`)
 			db.Bets.find({}).exec((error, result2) => {
 				if(error){
 					response.writeHead(500, {"Content-Type": "text/plain"});
 					response.write(error + "\n");
 					response.end();
 				} else {
+					console.log(`res2: ${result2}`)
 					let body = '<html>'+
 					    '<head>'+
 					    '<meta http-equiv="Content-Type" content="text/html; '+
