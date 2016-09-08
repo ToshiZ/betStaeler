@@ -154,10 +154,10 @@ function show(response, postData) {
 					    '</head>'+
 					    '<body>'+
 					    '<h1>' +
-					    JSON.stringify(result).replace('\\', '') +
+					    JSON.stringify(result) +
 					    '</h1>' +
 					    '<h2>' + 
-					    JSON.stringify(result2).replace('\\', '') +
+					    JSON.stringify(result2) +
 					    '</h2>' +
 					    '</body>'+
 					    '</html>';
