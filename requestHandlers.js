@@ -160,7 +160,7 @@ function show(response, postData) {
 					    '</h2>' +
 					    '</body>'+
 					    '</html>';
-					response.write(JSON.stringify(result) + JSON.stringify(result2));
+					response.write(body);
 	  				response.end();
 				}	
 			});			
