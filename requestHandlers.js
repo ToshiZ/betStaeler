@@ -153,12 +153,12 @@ function show(response, postData) {
 					    'charset=UTF-8" />'+
 					    '</head>'+
 					    '<body>'+
-					    '<h1>' +
+					    '<p>' +
 					    JSON.stringify(result) +
-					    '</h1>' +
-					    '<h2>' + 
+					    '</p>' +
+					    '<p>' + 
 					    JSON.stringify(result2) +
-					    '</h2>' +
+					    '</p>' +
 					    '</body>'+
 					    '</html>';
 					response.write(body);
